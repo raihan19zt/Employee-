@@ -1,0 +1,48 @@
+<form id="employeeForm">
+  <input type="text" id="name" placeholder="Name" required>
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="tel" id="phone" placeholder="Phone Number" required>
+  <input type="date" id="date" required>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  const form = document.getElementById("employeeForm");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const date = document.getElementById("date").value;
+
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const phoneRegex = /^[0-9]{10,11}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!nameRegex.test(name)) {
+      alert("Please enter a valid name.");
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email.");
+      return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      alert("Please enter a valid 10-11 digit phone number.");
+      return;
+    }
+
+    if (!date) {
+      alert("Please select a valid date.");
+      return;
+    }
+
+    // All validations passed — now you can save the record
+    alert("Form submitted successfully!");
+    // You can now call your save logic here
+  });
+</script>
